@@ -1,3 +1,5 @@
+const { SlotNotAvailableException } = require('./exceptions.js');
+
 module.exports = async function(page, time) {
   const slots = (await page.$x("//div[@class='row align-items-center']/div[@class='col-6']/div[@class='h3 mb-1']/parent::div/parent::div"));
   let i = 0;
@@ -7,11 +9,10 @@ module.exports = async function(page, time) {
     if (slotText.includes(time) && !slotText.includes("Esaurito")) {
       break;
     }
-
   }
 
   if(i == slots.length) {
-    throw new Error("Slot not found");
+    throw new SlotNotAvailableException("Slot not found");
   }
   const btn = (await slots[i].$x(".//button"))[0];
   await btn.click();

@@ -14,9 +14,7 @@ module.exports = async function(page, usn, psw) {
   // The waitForSelector throws an error if the alert error div is not found, therefore everything is fine if an error is generated
   loggedIn = true;
   try {
-    console.log("waiting for div")
     await page.waitForSelector('div.alert-error', { timeout: 1500 });
-    console.log("finished waiting for div")
     loggedIn = false;
   } catch (err) {
     loggedIn = true;

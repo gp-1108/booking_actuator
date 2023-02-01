@@ -21,7 +21,7 @@ module.exports = async function(page, time) {
   await firstCheckbox.click();
   await proceedBtn.click();
   const confirmBtn = (await page.$x("//button[contains(text(),'Prenota')]"))[0];
-  await confirmBtn.click();
-  // console.log(confirmBtn);
+  // await confirmBtn.click();
+  console.log(confirmBtn);
   await new Promise(resolve => setTimeout(resolve, 5000));
 }

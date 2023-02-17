@@ -1,7 +1,7 @@
 const { InvalidLoginException } = require('./exceptions.js');
 
 module.exports = async function(page, usn, psw) {
-  const loginBtn = (await page.$x("//a[text()='Login']"))[0];
+  const loginBtn = (await page.$x("//a[@id='login_link']"))[0];
   await loginBtn.click();
   await page.waitForNavigation({ waituntil: 'networkidle0' });
   const emailForm = (await page.$x("//input[@id='username'][1]"))[0];
@@ -22,5 +22,5 @@ module.exports = async function(page, usn, psw) {
   if (!loggedIn) {
     throw new InvalidLoginException("Something went wrong with the login.");
   }
-  await new Promise(resolve => setTimeout(resolve, 5000));
+  await new Promise(resolve => setTimeout(resolve, 3000));
 }
